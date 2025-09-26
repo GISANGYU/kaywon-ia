@@ -3,21 +3,32 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>계원예술대학교 리뉴얼 정보구조도</title>
+    <title>계원예술대학교 리뉴얼 IA · 메가메뉴 + 페이지 콘텐츠 정의</title>
     <style>
+      .hover_ {
+        transition: 0.5s;
+        text-align: center;
+      }
+      .hover_:hover {
+        scale: calc(1.05);
+        background-color: rgb(6, 6, 6);
+        color: white;
+        display: block;
+      }
+      .hover_ a {
+        text-decoration: underline;
+      }
       :root {
         --ink: #0f172a;
         --bg: #f7f8fb;
         --card: #ffffff;
         --line: #e5e7eb;
-        --title: #1f2937;
-        --muted: #6b7280;
         --head: #111827;
-        --primary: #4f46e5;
-        --dark: #111827;
+        --muted: #6b7280;
+        --brand: #3b5bfd;
         --chip: #f3f4f6;
-        --good: #16a34a;
-        --warn: #ef4444;
+        --ok: #16a34a;
+        --bad: #ef4444;
       }
       * {
         box-sizing: border-box;
@@ -26,139 +37,114 @@
         margin: 0;
         background: var(--bg);
         color: var(--ink);
-        font: 15px/1.6 'Pretendard Variable', system-ui, -apple-system, Segoe UI,
-          Roboto, 'Noto Sans KR', Arial, sans-serif;
+        font: 15px/1.62 'Pretendard Variable', system-ui, -apple-system,
+          Segoe UI, Roboto, 'Noto Sans KR', Arial, sans-serif;
       }
-      header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 28px 32px 8px;
-      }
-      header .l {
-        font-weight: 700;
-        letter-spacing: 0.02em;
-        color: #6b7280;
-      }
-      header .c {
-        font-weight: 800;
-        color: var(--title);
-      }
-      header .r {
-        color: #9ca3af;
-        font-weight: 600;
+      a {
+        color: inherit;
+        text-decoration: none;
       }
       .wrap {
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 0 24px 60px;
+        padding: 0 20px;
       }
-      /* Main node */
-      .main-row {
-        display: grid;
-        grid-template-columns: 1fr 260px 1fr;
-        align-items: start;
-        gap: 24px;
-        margin: 24px 0;
-      }
-      .main-node {
-        justify-self: center;
-      }
-      .node-main {
-        background: #3b5bfd;
-        color: #fff;
-        border-radius: 8px;
-        padding: 10px 24px;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-      }
-      .stack {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .stack .util {
+      header {
         background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        padding: 8px 12px;
-        text-align: center;
-        font-weight: 600;
-        box-shadow: 0 1px 0 #eef;
+        border-bottom: 1px solid var(--line);
       }
-      /* Grid columns */
-      .grid {
-        display: grid;
-        gap: 20px;
-        margin-top: 10px;
-      }
-      @media (min-width: 1200px) {
-        .grid {
-          grid-template-columns: repeat(8, 1fr);
-        }
-      }
-      @media (min-width: 900px) and (max-width: 1199px) {
-        .grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
-      @media (max-width: 899px) {
-        .main-row {
-          grid-template-columns: 1fr;
-        }
-        .main-node {
-          order: -1;
-          margin: 0 auto;
-        }
-        .stack {
-          grid-column: 1/-1;
-          flex-direction: row;
-          flex-wrap: wrap;
-        }
-        .grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      .col {
+      .top {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        justify-content: space-between;
+        padding: 14px 0;
+      }
+      .logo {
+        font-weight: 800;
+        color: var(--head);
+        letter-spacing: 0.02em;
+      }
+      .util {
+        display: flex;
         gap: 10px;
       }
-      .col .head {
-        background: #2b2e36;
-        color: #fff;
-        border-radius: 6px;
-        padding: 10px 14px;
-        font-weight: 800;
-        letter-spacing: 0.02em;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .badge {
-        font-size: 11px;
-        background: #11182733;
-        color: #fff;
-        padding: 2px 8px;
-        border-radius: 999px;
-        border: 1px solid #ffffff33;
-      }
-      .box {
-        background: #fff;
+      .util a {
         border: 1px solid var(--line);
-        border-radius: 6px;
-        padding: 10px 12px;
-        color: #111827;
+        background: #fff;
+        padding: 6px 10px;
+        border-radius: 8px;
         font-weight: 600;
       }
-      .box.dim {
-        background: #f9fafb;
-        color: #6b7280;
+      /* nav */
+      nav {
+        border-top: 1px solid var(--line);
       }
-      .hint {
-        font-size: 11px;
-        color: var(--muted);
-        margin-top: -6px;
+      .gnb {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .gnb > li {
+        position: relative;
+        list-style: none;
+      }
+      .gnb > li > a {
+        display: block;
+        font-weight: 800;
+        padding: 12px 14px;
+        border-radius: 8px;
+      }
+      .gnb > li:hover > a,
+      .gnb > li:focus-within > a {
+        background: #eef2ff;
+      }
+      /* mega */
+      .mega {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        min-width: 680px;
+        max-width: 940px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(10, 10, 30, 0.08);
+        padding: 14px;
+        display: none;
+        z-index: 10;
+      }
+      .gnb > li:hover .mega,
+      .gnb > li:focus-within .mega {
+        display: block;
+      }
+      .mega-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+        gap: 10px;
+      }
+      .mega h4 {
+        margin: 8px 8px 4px;
+        font-size: 13px;
+        color: #374151;
+      }
+      .mega ul {
+        margin: 0;
+        padding: 0 8px 10px;
+      }
+      .mega li {
+        list-style: none;
+        margin: 6px 0;
+      }
+      .mega a.item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        background: #fff;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-weight: 700;
       }
       .chip {
         display: inline-block;
@@ -170,155 +156,605 @@
         color: #374151;
       }
       .ok {
-        color: var(--good);
+        color: var(--ok);
         font-weight: 700;
       }
-      .warn {
-        color: var(--warn);
+      .bad {
+        color: var(--bad);
         font-weight: 700;
+      }
+      main {
+        padding: 28px 0 60px;
+      }
+      .section {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px;
+        margin: 16px 0;
+      }
+      .section h2 {
+        margin: 0 0 10px;
+      }
+      .page-contents {
+        margin: 6px 0 0 20px;
+      }
+      .page-contents li {
+        margin: 6px 0;
       }
       footer {
-        margin-top: 26px;
+        border-top: 1px solid var(--line);
+        padding: 24px 0;
+        margin-top: 30px;
         color: var(--muted);
         font-size: 13px;
+      }
+      .footer-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 8px 0;
+      }
+      .footer-links a {
+        border: 1px solid var(--line);
+        background: #fff;
+        padding: 6px 10px;
+        border-radius: 8px;
+      }
+      @media (max-width: 900px) {
+        .mega {
+          position: static;
+          display: none;
+          margin-top: 10px;
+        }
+        .gnb {
+          flex-wrap: wrap;
+        }
+        .gnb > li {
+          flex: 1 1 45%;
+        }
+        .gnb > li:hover .mega,
+        .gnb > li:focus-within .mega {
+          display: block;
+        }
+        .mega-grid {
+          grid-template-columns: 1fr;
+        }
+        .util {
+          display: none;
+        }
       }
     </style>
   </head>
   <body>
     <header>
-      <div class="l">02 정보 분석</div>
-      <div class="c">정보구조도</div>
-      <div class="r">TEAM. 민활기</div>
-    </header>
+      <div class="wrap top" role="banner">
+        <div class="logo">Kaywon IA 리뉴얼</div>
+        <div class="util" aria-label="유틸리티">
+          <a
+            href="#"
+            style="width: 400px; text-align: center; color: rgb(183, 183, 183)"
+            >내용을 입력하세요</a
+          >
+          <a href="#">검색</a>
 
-    <div class="wrap">
-      <!-- MAIN -->
-      <div class="main-row">
-        <div></div>
-        <div class="main-node"><div class="node-main">MAIN</div></div>
-        <div class="stack" aria-label="유틸리티">
-          <div class="util">검색</div>
-          <div class="util">SITEMAP</div>
-          <div class="util">인스타그램</div>
-          <div class="util">블로그</div>
-          <div class="util">유튜브</div>
-          <div class="util">영문 사이트</div>
+          <!--  <a href="#">영문 사이트</a>
+          <a href="#">블로그</a>
+          <a href="#">유튜브</a>
+          <a href="#">인스타그램</a> -->
         </div>
       </div>
+      <nav aria-label="주요 메뉴">
+        <div class="wrap">
+          <ul class="gnb">
+            <!-- 학사서비스 -->
+            <li>
+              <a href="#" aria-haspopup="true" aria-expanded="false"
+                >학사서비스</a
+              >
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>수업/출결</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-registration"
+                          >수강신청 <span class="chip">종합정보시스템</span></a
+                        >
+                        <ul class="page-contents">
+                          <li>
+                            신청 일정(장바구니/본신청/정정/철회) · 타임라인
+                          </li>
+                          <li>수강편람/강의계획서 열람 · 권장 이수체계</li>
+                          <li>분반/정원/대기 실시간 · 인기과목 알림</li>
+                          <li>대체·중복·재수강 규정 · 체크리스트</li>
+                          <li>가이드(영상/캡처) · 오류 신고 · FAQ</li>
+                          <li>바로가기/문의: 종정시 링크 · 담당부서</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-timetable">개인 시간표</a>
+                        <ul class="page-contents">
+                          <li>주/일 보기 전환 · 주차 네비 · 공휴일 표시</li>
+                          <li>강의실/담당교수/계획서 퀵뷰</li>
+                          <li>보강/변경 자동 반영 · 푸시 알림</li>
+                          <li>캘린더 동기화(iCal/Google/Outlook)</li>
+                          <li>겹침 경고 · 지도교수 상담 예약</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-attendance">공결 신청</a>
+                        <ul class="page-contents">
+                          <li>유형(질병/경조/군훈련/공식행사) 인정 기준</li>
+                          <li>증빙서류 안내/양식 · 모바일 업로드</li>
+                          <li>처리 프로세스/기한 · 상태 조회/알림</li>
+                          <li>반려 사유 확인/재제출 · FAQ/문의</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>성적/졸업 · 재정/증명</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-grades">성적 / 졸업</a>
+                        <ul class="page-contents">
+                          <li>학기별 성적 조회 · 정정 기간/절차</li>
+                          <li>GPA/석차 · 전공/교양 이수학점 현황</li>
+                          <li>졸업요건 트래커(필수/총학점/인증/작품)</li>
+                          <li>졸업사정/보완 · 유예/조기졸 업 안내</li>
+                          <li>복수·부전공/교직 현황 · 증명 바로가기</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-tuition"
+                          >등록금 / 납부 안내</a
+                        >
+                        <ul class="page-contents">
+                          <li>고지서 조회/출력 · 분납 신청 · 납부 일정</li>
+                          <li>납부 방법(가상계좌/카드/무통장) · 실시간 확인</li>
+                          <li>휴·복·자퇴 환불 규정 · 감면/연체</li>
+                          <li>영수증/세액공제 · 학자금대출 연계 · FAQ</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-scholarship"
+                          >장학 (안내·대출·FAQ)
+                          <span class="chip">중복 통합</span></a
+                        >
+                        <ul class="page-contents">
+                          <li>장학 종류(교내/교외/국가) · 자격/유지 기준</li>
+                          <li>신청 일정/서류 · 온라인 신청(바로가기)</li>
+                          <li>선발/지급 절차 · 결과 조회</li>
+                          <li>학자금대출(신청/상환/유예) · 상담 예약</li>
+                          <li>FAQ(성적/소득/가계곤란 등) · 문의처</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-calendar"
+                          >학사일정 <span class="chip">달력/리스트</span></a
+                        >
+                        <ul class="page-contents">
+                          <li>연간/학기 캘린더 · 필터(학사/장학/행사)</li>
+                          <li>D-Day 알림 · 내 일정 병합 보기</li>
+                          <li>변경 이력 · iCal/Google 구독</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-certificates"
+                          >증명서 발급</a
+                        >
+                        <ul class="page-contents">
+                          <li>온라인 발급(재학/성적/졸업(예정)/납부)</li>
+                          <li>영문 증명 · 진위확인(검증코드)</li>
+                          <li>무인발급기 위치/시간 · 오프라인 절차</li>
+                          <li>수수료/처리시간 · 정부24 연계 · FAQ</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
 
-      <!-- COLUMNS -->
-      <section class="grid">
-        <!-- 학사서비스 -->
-        <div class="col">
-          <div class="head">
-            학사서비스 <span class="badge">업무 중심</span>
-          </div>
-          <div class="box">
-            수강신청 <span class="chip">종합정보시스템</span>
-          </div>
-          <div class="box">개인 시간표</div>
-          <div class="box">성적 / 졸업</div>
-          <div class="box">공결 신청</div>
-          <div class="box">등록금 / 납부 안내</div>
-          <div class="box">
-            장학 (안내·대출·FAQ) <span class="chip ok">중복 통합</span>
-          </div>
-          <div class="box">
-            학사일정 <span class="chip">달력 / 리스트</span>
-          </div>
-          <div class="box">증명서 발급</div>
-          <div class="hint">※ 핵심업무 2~3클릭 내 도달</div>
-        </div>
+            <!-- 입학안내 -->
+            <li>
+              <a href="#" aria-haspopup="true">입학안내</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>모집/전형</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-admission-guide"
+                          >모집요강</a
+                        >
+                        <ul class="page-contents">
+                          <li>전형유형/모집단위 · 선발 인원</li>
+                          <li>지원 자격 · 평가 요소/반영 비율</li>
+                          <li>필수 제출서류 · 유의사항 · FAQ</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-apply">원서접수</a>
+                        <ul class="page-contents">
+                          <li>온라인 접수 시스템 바로가기</li>
+                          <li>접수 절차(회원/작성/결제/제출)</li>
+                          <li>접수 확인/정정 · 문의</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-schedule">전형일정</a>
+                        <ul class="page-contents">
+                          <li>모집단계 캘린더 · 고사장 안내</li>
+                          <li>수험표 출력 · 알림 구독</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-pass">합격자 발표</a>
+                        <ul class="page-contents">
+                          <li>개별 조회 · 등록 안내</li>
+                          <li>추가합격/등록금 납부 일정</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>신입생 혜택</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-fresh-scholarship"
+                          >신입 장학 제도</a
+                        >
+                        <ul class="page-contents">
+                          <li>종류/자격/지급방식 · 신청 절차</li>
+                          <li>FAQ · 문의</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-campus-tour">캠퍼스 투어</a>
+                        <ul class="page-contents">
+                          <li>가상투어 · 오프라인 방문 예약</li>
+                          <li>홍보자료/브로슈어 다운로드</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
 
-        <!-- 입학안내 -->
-        <div class="col">
-          <div class="head">입학안내</div>
-          <div class="box">모집요강</div>
-          <div class="box">원서접수</div>
-          <div class="box">전형일정</div>
-          <div class="box">합격자 발표</div>
-          <div class="box">신입생 장학 제도</div>
-        </div>
+            <!-- 계열·학과 -->
+            <li>
+              <a href="#" aria-haspopup="true">계열·학과</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>학과정보</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-dept-about">학과소개</a>
+                        <ul class="page-contents">
+                          <li>비전/교육목표 · 인재상</li>
+                          <li>세부 전공 트랙</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-curriculum">커리큘럼</a>
+                        <ul class="page-contents">
+                          <li>학년별 과목 체계 · 권장 이수 플로우</li>
+                          <li>과목 상세(강의계획서 연동)</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-graduation-req">졸업요건</a>
+                        <ul class="page-contents">
+                          <li>필수/선택 학점 · 인증/졸작 요건</li>
+                          <li>트래커 연동(성적/이수 현황)</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>구성원/성과</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-faculty">교수진</a>
+                        <ul class="page-contents">
+                          <li>전임/외래 · 연구/프로젝트</li>
+                          <li>오피스아워 · 상담 예약</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-works"
+                          >학생작품 / 전시·수상</a
+                        >
+                        <ul class="page-contents">
+                          <li>작품 갤러리 · 전시/공모전 수상</li>
+                          <li>포트폴리오/졸업전 아카이브</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
 
-        <!-- 계열·학과 -->
-        <div class="col">
-          <div class="head">계열 · 학과</div>
-          <div class="box">학과소개</div>
-          <div class="box">커리큘럼</div>
-          <div class="box">졸업요건</div>
-          <div class="box">교수진</div>
-          <div class="box">학생작품 / 전시·수상</div>
-        </div>
+            <!-- 대학생활 -->
+            <li>
+              <a href="#" aria-haspopup="true">대학생활</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>캠퍼스/복지</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-library">도서관/시설</a>
+                        <ul class="page-contents">
+                          <li>열람실/대관/장비 · 좌석 현황</li>
+                          <li>운영시간 · 휴관일</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-welfare">복지/식당/셔틀</a>
+                        <ul class="page-contents">
+                          <li>식당 메뉴/가격 · 셔틀/주차</li>
+                          <li>의료/상담/장애학생 지원</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-dorm">기숙사</a>
+                        <ul class="page-contents">
+                          <li>입사 안내/일정 · 비용</li>
+                          <li>생활 수칙 · 시설 안내</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>활동/진로</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-club">동아리</a>
+                        <ul class="page-contents">
+                          <li>동아리 목록/모집 · 공간 신청</li>
+                          <li>활동 공지/갤러리</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-global">국제교류</a>
+                        <ul class="page-contents">
+                          <li>교환/어학연수 · 파견/선발 일정</li>
+                          <li>장학/학점인정 안내</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-career">상담/진로</a>
+                        <ul class="page-contents">
+                          <li>진로상담 예약 · 취업 프로그램</li>
+                          <li>현직 멘토링/포트폴리오 컨설팅</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
 
-        <!-- 대학생활 -->
-        <div class="col">
-          <div class="head">대학생활</div>
-          <div class="box">도서관 / 공간</div>
-          <div class="box">복지 / 식당 / 셔틀</div>
-          <div class="box">동아리</div>
-          <div class="box">국제교류</div>
-          <div class="box">기숙사 / 상담</div>
-        </div>
+            <!-- 뉴스·공지 -->
+            <li>
+              <a href="#" aria-haspopup="true">뉴스·공지</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>공지/소식(일원화)</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-notice">공지사항</a>
+                        <ul class="page-contents">
+                          <li>태그: 학사/장학/행사/행정 · 필터</li>
+                          <li>읽은 공지 흐림 표시 · 저장/공유</li>
+                          <li>부서별 공지 구독/알림 설정</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-press"
+                          >보도자료 · 뉴스레터</a
+                        >
+                        <ul class="page-contents">
+                          <li>보도자료 아카이브 · 미디어 키트</li>
+                          <li>뉴스레터 구독 · RSS</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>행사</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-events">행사 안내</a>
+                        <ul class="page-contents">
+                          <li>전시/공연/세미나 캘린더</li>
+                          <li>사전등록/티켓 · 사진/후기</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
 
-        <!-- 뉴스·공지 (일원화) -->
-        <div class="col">
-          <div class="head">뉴스 · 공지 <span class="badge">일원화</span></div>
-          <div class="box">
-            공지사항 <span class="chip">학사 / 장학 / 행사 태그</span>
-          </div>
-          <div class="box">
-            읽은 공지 <span class="chip">희미하게 표시</span>
-          </div>
-          <div class="box">보도자료</div>
-          <div class="box">뉴스레터</div>
-          <div class="box">행사 안내</div>
-          <div class="hint">
-            <span class="ok">중복 제거</span>: ‘뉴스센터 &gt; 학사/장학’은 공지
-            태그로 통합
-          </div>
-        </div>
+            <!-- 커뮤니티 -->
+            <li>
+              <a href="#" aria-haspopup="true">커뮤니티</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>게시/자료</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-board">자유게시판/홍보</a>
+                        <ul class="page-contents">
+                          <li>글 작성/신고 · 말머리(홍보/모집/중고)</li>
+                          <li>인기/추천 · 정렬/검색</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-repo">자료실</a>
+                        <ul class="page-contents">
+                          <li>양식/서식 · 과제/강의자료</li>
+                          <li>버전/권한 관리 · 미리보기</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>Q&A</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-qna">부서별 Q&amp;A</a>
+                        <ul class="page-contents">
+                          <li>질문 등록 · 담당자 배정</li>
+                          <li>처리현황/기한 · 만족도 평가</li>
+                          <li>유사 질문 추천(FAQ 연동)</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
 
-        <!-- 커뮤니티 -->
-        <div class="col">
-          <div class="head">커뮤니티</div>
-          <div class="box">자유게시판 / 홍보</div>
-          <div class="box">자료실</div>
-          <div class="box">Q&amp;A (부서별)</div>
-          <div class="box">답변 현황 / 알림</div>
+            <!-- 고객지원센터 -->
+            <li>
+              <a href="#" aria-haspopup="true">고객지원센터</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>도움말/상담</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-chatbot">AI 챗봇 / FAQ</a>
+                        <ul class="page-contents">
+                          <li>키워드 자동완성/연관어 추천</li>
+                          <li>카테고리 FAQ · 챗봇 상담 전환</li>
+                          <li>만족도/피드백 반영</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-contact">1:1 문의</a>
+                        <ul class="page-contents">
+                          <li>문의 접수/파일첨부 · 처리현황</li>
+                          <li>알림/이력 · 응답 SLA 안내</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>서비스 안내</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#page-service-notice"
+                          >서비스 공지(점검/장애)</a
+                        >
+                        <ul class="page-contents">
+                          <li>예정/진행/해결 공지 · 영향 범위</li>
+                          <li>구독/알림 · 장애 히스토리</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="item" href="#page-guide">이용 가이드</a>
+                        <ul class="page-contents">
+                          <li>신규 사용 가이드(영상/캡처)</li>
+                          <li>접근성/보안/개인정보 안내</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
+      </nav>
+    </header>
 
-        <!-- 고객지원센터 -->
-        <div class="col">
-          <div class="head">고객지원센터</div>
-          <div class="box">
-            AI 챗봇 / FAQ <span class="chip">검색 연동</span>
-          </div>
-          <div class="box">1:1 문의</div>
-          <div class="box">서비스 공지(점검/장애)</div>
-          <div class="box">이용 가이드</div>
-        </div>
-
-        <!-- 대학소개 · 찾아오는 길 (푸터 이관) -->
-        <div class="col">
-          <div class="head">
-            대학소개 · 찾아오는 길 <span class="badge">푸터</span>
-          </div>
-          <div class="box dim">총장 인사말</div>
-          <div class="box dim">비전/연혁/조직도</div>
-          <div class="box dim">캠퍼스맵</div>
-          <div class="box dim">찾아오는 길</div>
-          <div class="hint">
-            <span class="ok">중복 제거</span> &middot; 헤더에서 제외, 푸터 고정
-            링크
-          </div>
-        </div>
+    <main class="wrap" id="content">
+      <!-- 아래 섹션들은 시연/문서화를 위한 앵커 타겟(메뉴에서 클릭 시 이동) -->
+      <section id="page-registration" class="section hover_">
+        <a href="index_new.html">
+          <h2>정보구조도 ver.2</h2>
+          <p>이동하기</p>
+        </a>
       </section>
+      <section id="page-timetable" class="section" style="height: 50vh">
+        <h2>방향성 요약 (핵심만)</h2>
+        <p>
+          메뉴 단순화 & 중복제거: 장학/학사 공지 중복(뉴스센터 vs 학사안내)
+          통합. 학교안내·찾아오는길은 푸터로 이관.
+        </p>
+        <p>
+          빠른 도달(2~3클릭): 핵심업무(수강신청, 학사일정, 등록/장학, 성적,
+          증명)까지 2~3클릭 내 도달.
+        </p>
+        <p>
+          검색 강화: 상단 고정 통합검색(자동완성·연관키워드·인기/실시간검색어),
+          키워드 하이라이트, FAQ/챗봇 연동.
+        </p>
+        <p>
+          개인화: 로그인 대시보드(맞춤 일정·퀵메뉴·알림). 읽은 학사공지는
+          희미하게 표시.
+        </p>
+        <p>
+          레이아웃: 헤더 1단으로 단순화, 메인은 카드/달력 시각화 중심. PC
+          레이아웃은 좌→우 산만함을 상→하 흐름으로 보완. 모바일 우선.
+        </p>
+        <p>브랜딩 일관성: 통일된 타이포·컴포넌트 톤.</p>
+      </section>
+    </main>
 
-      <footer>
-        원칙: <strong>2~3클릭</strong> 내 핵심업무 ·
-        <strong>중복 제거 & 단순화</strong> ·
-        <strong>검색/개인화 강화</strong> · <strong>모바일 우선</strong>
-      </footer>
-    </div>
+    <footer>
+      <div class="wrap">
+        <div><strong>푸터 고정 링크(헤더 중복 제거)</strong></div>
+        <div class="footer-links" aria-label="푸터 링크">
+          <a href="#">대학소개</a>
+          <a href="#">찾아오는 길</a>
+          <a href="#">캠퍼스맵</a>
+          <a href="#">규정/정책</a>
+          <a href="#">개인정보처리방침</a>
+          <a href="#">연락처</a>
+          <a href="#">SNS</a>
+        </div>
+        <div class="muted">
+          원칙: 2~3클릭 내 핵심업무 · 중복 제거/단순화 · 검색/개인화 강화 ·
+          모바일 우선
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // (선택) 키보드 포커스 접근성: gnb 링크에 포커스가 들어가면 해당 mega 표시
+      document.querySelectorAll('.gnb>li>a').forEach((a) => {
+        a.addEventListener('focus', (e) => {
+          document
+            .querySelectorAll('.gnb>li')
+            .forEach((li) => li.classList.remove('open'));
+          a.parentElement.classList.add('open');
+        });
+      });
+      // 앵커 이동 시 부드럽게 스크롤
+      document.querySelectorAll('a.item[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const id = link.getAttribute('href');
+          const el = document.querySelector(id);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.pushState(null, '', id);
+          }
+        });
+      });
+    </script>
   </body>
 </html>
+ㄴ
