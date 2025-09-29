@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kaywon IA · 헤더/푸터만 · 100vh</title>
+    <style>
+      :root {
+        --ink: #0f172a;
+        --bg: #f7f8fb;
+        --card: #ffffff;
+        --line: #e5e7eb;
+        --head: #111827;
+        --muted: #6b7280;
+        --brand: #3b5bfd;
+        --chip: #f3f4f6;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 15px/1.62 'Pretendard Variable', system-ui, -apple-system,
+          Segoe UI, Roboto, 'Noto Sans KR', Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      /* Header */
+      header {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+      }
+      .wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+      }
+      .logo {
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        color: var(--head);
+      }
+      .util {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .util a {
+        border: 1px solid var(--line);
+        background: #fff;
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-weight: 600;
+      }
+      nav {
+        border-top: 1px solid var(--line);
+      }
+      .gnb {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0;
+        margin: 0;
+      }
+      .gnb > li {
+        list-style: none;
+        position: relative;
+      }
+      .gnb > li > a {
+        display: block;
+        padding: 12px 14px;
+        border-radius: 8px;
+        font-weight: 800;
+      }
+      .gnb > li:hover > a,
+      .gnb > li:focus-within > a {
+        background: #eef2ff;
+      }
+      /* Mega menu */
+      .mega {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        z-index: 10;
+        min-width: 860px;
+        max-width: 1100px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: 0 12px 34px rgba(20, 24, 60, 0.08);
+        padding: 14px;
+      }
+      .gnb > li:hover .mega,
+      .gnb > li:focus-within .mega {
+        display: block;
+      }
+      .mega-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(240px, 1fr));
+        gap: 12px;
+      }
+      .mega h4 {
+        margin: 8px 8px 6px;
+        font-size: 13px;
+        color: #374151;
+        font-weight: 800;
+      }
+      .mega ul {
+        margin: 0;
+        padding: 0 8px 10px;
+      }
+      .mega li {
+        list-style: none;
+        margin: 6px 0;
+      }
+      .mega a.item {
+        display: flex;
+        border: 1px solid var(--line);
+        background: #fff;
+        padding: 8px 10px;
+        border-radius: 10px;
+        font-weight: 700;
+      }
+      .chip {
+        display: inline-block;
+        background: var(--chip);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 2px 8px;
+        font-size: 11px;
+        color: #374151;
+        margin-left: 8px;
+      }
+      /* Layout: main empty but consumes space */
+      main {
+        flex: 1; /* empty area */
+      }
+      /* Footer */
+      footer {
+        background: #fff;
+        border-top: 1px solid var(--line);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(220px, 1fr));
+        gap: 16px;
+        padding: 22px 0;
+      }
+      .footer-grid h5 {
+        margin: 0 0 8px;
+        font-size: 14px;
+        color: #111827;
+      }
+      .footer-grid ul {
+        margin: 0;
+        padding: 0;
+      }
+      .footer-grid li {
+        list-style: none;
+        margin: 6px 0;
+      }
+      .footer-grid a {
+        border: 1px solid var(--line);
+        background: #fff;
+        padding: 6px 10px;
+        border-radius: 8px;
+        display: inline-block;
+      }
+      .foot-bottom {
+        border-top: 1px dashed var(--line);
+        padding: 12px 0;
+        color: var(--muted);
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 1024px) {
+        .mega {
+          position: fixed;
+          left: 20px;
+          right: 20px;
+          top: unset;
+          transform: translateY(0);
+          margin-top: 8px;
+        }
+        .mega-grid {
+          grid-template-columns: repeat(2, minmax(220px, 1fr));
+        }
+        .footer-grid {
+          grid-template-columns: repeat(2, minmax(220px, 1fr));
+        }
+      }
+      @media (max-width: 720px) {
+        .gnb {
+          flex-wrap: wrap;
+        }
+        .mega-grid {
+          grid-template-columns: 1fr;
+        }
+        .util {
+          display: none;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap top" role="banner">
+        <div class="logo">Kaywon IA</div>
+        <div class="util" aria-label="유틸리티">
+          <a href="#">검색</a>
+          <a href="#">ENGLISH SITE</a>
+          <a href="#">SITE MAP</a>
+          <a href="#">인스타그램</a>
+          <a href="#">유튜브</a>
+          <a href="#">블로그</a>
+          <a href="#">바로가기</a>
+        </div>
+      </div>
+      <nav aria-label="주요 메뉴">
+        <div class="wrap">
+          <ul class="gnb">
+            <!-- 학사서비스 -->
+            <li>
+              <a href="#" aria-haspopup="true">학사서비스</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>수업/출결</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#"
+                          >수강신청<span class="chip">종합정보시스템</span></a
+                        >
+                      </li>
+                      <li><a class="item" href="#">개인 시간표</a></li>
+                      <li><a class="item" href="#">성적/졸업</a></li>
+                      <li><a class="item" href="#">공결 신청</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>재정/장학/일정</h4>
+                    <ul>
+                      <li><a class="item" href="#">등록금/납부 안내</a></li>
+                      <li><a class="item" href="#">장학(안내·대출·FAQ)</a></li>
+                      <li><a class="item" href="#">학사일정</a></li>
+                      <li><a class="item" href="#">증명서 발급</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>총장실</h4>
+                    <ul>
+                      <li><a class="item" href="#">총장 인사말</a></li>
+                      <li>
+                        <a class="item" href="#"
+                          >총장에게 바란다<span class="chip">게시판</span></a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- 입학 안내 -->
+            <li>
+              <a href="#" aria-haspopup="true">입학 안내</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>입학</h4>
+                    <ul>
+                      <li><a class="item" href="#">입학 안내 메인</a></li>
+                    </ul>
+                  </div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            </li>
+
+            <!-- 계열/학과 -->
+            <li>
+              <a href="#" aria-haspopup="true">계열/학과</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>교양학부</h4>
+                    <ul>
+                      <li><a class="item" href="#">아르케(Arche)</a></li>
+                    </ul>
+                    <h4>Communication 계열</h4>
+                    <ul>
+                      <li><a class="item" href="#">광고/브랜드디자인과</a></li>
+                      <li><a class="item" href="#">시각디자인과</a></li>
+                    </ul>
+                    <h4>Media & Technology 계열</h4>
+                    <ul>
+                      <li><a class="item" href="#">게임미디어과</a></li>
+                      <li><a class="item" href="#">디지털미디어디자인과</a></li>
+                      <li><a class="item" href="#">애니메이션과</a></li>
+                      <li><a class="item" href="#">영상디자인과</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>미래디자인학부</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#"
+                          >스페이스아트앤테크놀로지전공</a
+                        >
+                      </li>
+                      <li><a class="item" href="#">메타페이스 전공</a></li>
+                      <li><a class="item" href="#">VR콘텐츠디자인전공</a></li>
+                    </ul>
+                    <h4>Space 계열</h4>
+                    <ul>
+                      <li><a class="item" href="#">건축디자인과</a></li>
+                      <li><a class="item" href="#">실내건축디자인과</a></li>
+                      <li><a class="item" href="#">전시콘텐츠디자인과</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>Lifestyle 계열</h4>
+                    <ul>
+                      <li><a class="item" href="#">리빙가구디자인과</a></li>
+                      <li>
+                        <a class="item" href="#">스마트프로덕트디자인과</a>
+                      </li>
+                      <li><a class="item" href="#">플라워디자인과</a></li>
+                    </ul>
+                    <h4>학사학위 전공심화과정</h4>
+                    <ul>
+                      <li>
+                        <a class="item" href="#">건축인테리어디자인학과</a>
+                      </li>
+                      <li><a class="item" href="#">공간연출학과</a></li>
+                      <li><a class="item" href="#">순수미술학과</a></li>
+                      <li><a class="item" href="#">시각디자인학과</a></li>
+                      <li><a class="item" href="#">애니메이션학과</a></li>
+                      <li><a class="item" href="#">융합예술학과</a></li>
+                      <li><a class="item" href="#">전시콘텐츠디자인과</a></li>
+                      <li><a class="item" href="#">광고브랜드디자인과</a></li>
+                      <li><a class="item" href="#">디지털미디어디자인과</a></li>
+                      <li>
+                        <a class="item" href="#">스마트프로덕트디자인과</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- 학사안내 -->
+            <li>
+              <a href="#" aria-haspopup="true">학사안내</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>학사 기본</h4>
+                    <ul>
+                      <li><a class="item" href="#">학사일정</a></li>
+                      <li><a class="item" href="#">학사안내</a></li>
+                      <li><a class="item" href="#">장학안내</a></li>
+                      <li><a class="item" href="#">병역정보</a></li>
+                      <li><a class="item" href="#">국제교류</a></li>
+                      <li><a class="item" href="#">증명서 발급</a></li>
+                      <li><a class="item" href="#">FAQ</a></li>
+                      <li><a class="item" href="#">서식자료</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>학생지원/활동</h4>
+                    <ul>
+                      <li><a class="item" href="#">장애학생지원</a></li>
+                      <li><a class="item" href="#">상담지원</a></li>
+                      <li>
+                        <a class="item" href="#">학생증(국제학생증) 발급</a>
+                      </li>
+                      <li><a class="item" href="#">학생상해보험</a></li>
+                      <li><a class="item" href="#">창업지원</a></li>
+                      <li><a class="item" href="#">학내무선랜안내</a></li>
+                      <li><a class="item" href="#">총학생회</a></li>
+                      <li><a class="item" href="#">계원MIDI</a></li>
+                      <li><a class="item" href="#">학생동아리</a></li>
+                      <li><a class="item" href="#">계원홍보대사</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>행정/기관/가이드</h4>
+                    <ul>
+                      <li><a class="item" href="#">학생행정지원</a></li>
+                      <li><a class="item" href="#">야간이용안내</a></li>
+                      <li><a class="item" href="#">차량출입 및 주차안내</a></li>
+                      <li><a class="item" href="#">안전교육지침</a></li>
+                      <li><a class="item" href="#">보건실</a></li>
+                      <li><a class="item" href="#">부속기관</a></li>
+                      <li><a class="item" href="#">부설기관</a></li>
+                      <li><a class="item" href="#">진로/취업 가이드북</a></li>
+                      <li><a class="item" href="#">비교과 가이드북</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- 뉴스센터 -->
+            <li>
+              <a href="#" aria-haspopup="true">뉴스센터</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>계원뉴스</h4>
+                    <ul>
+                      <li><a class="item" href="#">기획</a></li>
+                      <li><a class="item" href="#">인물</a></li>
+                      <li><a class="item" href="#">행사</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>공지사항</h4>
+                    <ul>
+                      <li><a class="item" href="#">교내소식</a></li>
+                      <li><a class="item" href="#">학사</a></li>
+                      <li><a class="item" href="#">장학(대출)</a></li>
+                      <li><a class="item" href="#">입학</a></li>
+                      <li><a class="item" href="#">등록금</a></li>
+                      <li><a class="item" href="#">입찰</a></li>
+                      <li><a class="item" href="#">채용공고</a></li>
+                      <li><a class="item" href="#">기타소식</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>홍보/경력</h4>
+                    <ul>
+                      <li><a class="item" href="#">계원 홍보영상</a></li>
+                      <li><a class="item" href="#">계원뉴스레터</a></li>
+                      <li><a class="item" href="#">계원학보</a></li>
+                      <li><a class="item" href="#">경력/취업(외부링크)</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- 커뮤니티 -->
+            <li>
+              <a href="#" aria-haspopup="true">커뮤니티</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>부서별 묻고답하기</h4>
+                    <ul>
+                      <li><a class="item" href="#">신/편입학 - 입학상담</a></li>
+                      <li>
+                        <a class="item" href="#"
+                          >교육혁신처 - 학적(휴학/복학/전과/졸업)</a
+                        >
+                      </li>
+                      <li>
+                        <a class="item" href="#"
+                          >교육혁신처 - 수업(수강/성적)</a
+                        >
+                      </li>
+                      <li>
+                        <a class="item" href="#"
+                          >실습지원팀(목공/금속/영상/사진/판화/창작공방)</a
+                        >
+                      </li>
+                      <li>
+                        <a class="item" href="#"
+                          >학생성공처 -
+                          장학/학생활동/복지/현장실습/커리어/보건/상담</a
+                        >
+                      </li>
+                      <li>
+                        <a class="item" href="#">학생성공처 - 예비군/병역</a>
+                      </li>
+                      <li>
+                        <a class="item" href="#">학생성공처 - 학생식단</a>
+                      </li>
+                      <li>
+                        <a class="item" href="#"
+                          >사무처 - 도서관 이용(로그인)</a
+                        >
+                      </li>
+                      <li>
+                        <a class="item" href="#"
+                          >사무처 - 평생교육원 이용(로그인)</a
+                        >
+                      </li>
+                      <li>
+                        <a class="item" href="#"
+                          >사무처 - 우경예술관 대관문의</a
+                        >
+                      </li>
+                      <li>
+                        <a class="item" href="#"
+                          >정보전산팀 - 종합정보시스템 로그인</a
+                        >
+                      </li>
+                      <li><a class="item" href="#">교직원노동조합</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>학생 서비스</h4>
+                    <ul>
+                      <li><a class="item" href="#">학생식단표</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>기타</h4>
+                    <ul>
+                      <li><a class="item" href="#">HOME</a></li>
+                      <li><a class="item" href="#">ENGLISH SITE</a></li>
+                      <li><a class="item" href="#">인스타그램</a></li>
+                      <li><a class="item" href="#">유튜브</a></li>
+                      <li><a class="item" href="#">블로그</a></li>
+                      <li><a class="item" href="#">SITE MAP</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- 바로가기 (퀵 서비스) -->
+            <li>
+              <a href="#" aria-haspopup="true">바로가기</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>학사/시스템</h4>
+                    <ul>
+                      <li><a class="item" href="#">교내소식</a></li>
+                      <li><a class="item" href="#">원격수업안내</a></li>
+                      <li><a class="item" href="#">학사</a></li>
+                      <li><a class="item" href="#">등록금</a></li>
+                      <li><a class="item" href="#">장학(대출)</a></li>
+                      <li><a class="item" href="#">근로장학</a></li>
+                      <li><a class="item" href="#">입찰</a></li>
+                      <li><a class="item" href="#">채용</a></li>
+                      <li><a class="item" href="#">종합정보시스템</a></li>
+                      <li><a class="item" href="#">학생경력개발시스템</a></li>
+                      <li><a class="item" href="#">현장실습시스템</a></li>
+                      <li><a class="item" href="#">규정관리시스템</a></li>
+                      <li><a class="item" href="#">교육과정관리시스템</a></li>
+                      <li><a class="item" href="#">증명서발급</a></li>
+                      <li><a class="item" href="#">학사일정</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>지원/안내</h4>
+                    <ul>
+                      <li><a class="item" href="#">학생상담(인권)</a></li>
+                      <li><a class="item" href="#">국가장학금</a></li>
+                      <li><a class="item" href="#">교내전화번호</a></li>
+                      <li><a class="item" href="#">학과안내</a></li>
+                      <li><a class="item" href="#">입학안내</a></li>
+                      <li><a class="item" href="#">찾아오시는길</a></li>
+                      <li><a class="item" href="#">도서관</a></li>
+                      <li><a class="item" href="#">계원뉴스</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>홍보/SNS</h4>
+                    <ul>
+                      <li><a class="item" href="#">계원비전</a></li>
+                      <li><a class="item" href="#">계원소개</a></li>
+                      <li><a class="item" href="#">계원홍보영상</a></li>
+                      <li><a class="item" href="#">계원인스타그램</a></li>
+                      <li><a class="item" href="#">계원유튜브</a></li>
+                      <li><a class="item" href="#">계원블로그</a></li>
+                      <li><a class="item" href="#">뉴스센터</a></li>
+                      <li><a class="item" href="#">총장에게 바란다</a></li>
+                      <li><a class="item" href="#">부서별 묻고답하기</a></li>
+                      <li><a class="item" href="#">계원플레이&기부</a></li>
+                      <li>
+                        <a class="item" href="#">학사학위 전공심화과정</a>
+                      </li>
+                      <li><a class="item" href="#">평생교육원</a></li>
+                      <li><a class="item" href="#">셔틀버스</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- 대학소개 -->
+            <li>
+              <a href="#" aria-haspopup="true">대학소개</a>
+              <div class="mega" role="menu">
+                <div class="mega-grid">
+                  <div>
+                    <h4>학교법인</h4>
+                    <ul>
+                      <li><a class="item" href="#">법인기구</a></li>
+                      <li><a class="item" href="#">법인임원현황</a></li>
+                      <li>
+                        <a class="item" href="#">공지사항&이사회 회의록</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>대학현황</h4>
+                    <ul>
+                      <li><a class="item" href="#">대학평의원회</a></li>
+                      <li><a class="item" href="#">정보공개</a></li>
+                      <li><a class="item" href="#">자체평가</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>캠퍼스안내</h4>
+                    <ul>
+                      <li><a class="item" href="#">캠퍼스맵</a></li>
+                      <li><a class="item" href="#">찾아오시는 길</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main aria-label="빈 메인 영역">
+      <!-- 요청: 메인은 비워두기 (비주얼/콘텐츠 없음) -->
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footer-grid" aria-label="푸터 링크">
+          <div>
+            <h5>푸터 · 고지/공시</h5>
+            <ul>
+              <li><a href="#">대학정보공시</a></li>
+              <li><a href="#">정보공개</a></li>
+              <li><a href="#">혁신지원사업 자율혁신계획</a></li>
+              <li><a href="#">대학자체평가</a></li>
+              <li><a href="#">예결산공고</a></li>
+              <li><a href="#">개인정보처리방침</a></li>
+              <li><a href="#">찾아오시는길</a></li>
+              <li><a href="#">개인정보 제3자 제공</a></li>
+              <li><a href="#">결강신고 게시판</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>패밀리사이트</h5>
+            <ul>
+              <li><a href="#">계원예술고등학교</a></li>
+              <li><a href="#">계원예술중학교</a></li>
+              <li><a href="#">파라다이스 그룹</a></li>
+              <li><a href="#">파라다이스복지재단</a></li>
+              <li><a href="#">파라다이스문화재단</a></li>
+              <li><a href="#">한국현대문학관</a></li>
+              <li><a href="#">파라다이스시티</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>관련사이트</h5>
+            <ul>
+              <li><a href="#">대학위치</a></li>
+              <li><a href="#">전화번호</a></li>
+              <li><a href="#">예결산 공고</a></li>
+              <li><a href="#">Q&A</a></li>
+              <li><a href="#">학술정보실(도서관)</a></li>
+              <li><a href="#">평생교육원(수신재)</a></li>
+              <li><a href="#">교수학습혁신센터</a></li>
+              <li><a href="#">국민권익위원회</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>SNS / 기타</h5>
+            <ul>
+              <li><a href="#">Management Login</a></li>
+              <li><a href="#">인스타그램</a></li>
+              <li><a href="#">유튜브</a></li>
+              <li><a href="#">페이스북</a></li>
+              <li><a href="#">네이버블로그</a></li>
+              <li><a href="#">다음블로그</a></li>
+              <li><a href="#">사이트맵</a></li>
+              <li><a href="#">검색</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <div>© Kaywon University · IA Demo</div>
+          <div>원칙: 2~3클릭 핵심업무 · 중복제거/단순화 · 모바일 우선</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
